@@ -13,7 +13,7 @@ You can increase this number by doing this:
 
 When testing with *Jest*, you may see this error:
 ```shell
-Couldn't find preset "module:metro-react-native-babel-preset" relative to directory "<path-to-your-project"
+Couldn\'t find preset "module:metro-react-native-babel-preset" relative to directory "<path-to-your-project"
 ```
 
 Substitute this line on your babel.rc:
