@@ -16,7 +16,7 @@ When testing with *Jest*, you may see this error:
 Couldn\'t find preset "module:metro-react-native-babel-preset" relative to directory "<path-to-your-project"
 ```
 
-Substitute this line on your babel.rc:
+Substitute this line on your .babelrc:
 ```
 "presets": ["module:metro-react-native-babel-preset"]
 ```
