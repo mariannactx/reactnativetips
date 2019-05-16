@@ -1,8 +1,36 @@
-# REACT NATIVE TIPS for command line
+# REACT NATIVE TIPS for command line (w/ Android)
 
-## Troubleshooting:
+## 1. GETTING STARTED
+Follow the instructions @[Getting Started](https://facebook.github.io/react-native/docs/getting-started.html)
 
-When running npm, you may see an error that says something like "ENOENT". This is a problem with the number of watches your computer can handle.
+ATTENTION: Building your app using Android Studio is not avoidable! Prepare your bottle of water and your favorite podcast.
+
+### WATCHMAN INSTALLATION on Ubuntu
+
+Before running the instructions, install the dependencies (I modified the install command from [this tutorial](https://medium.com/@vonchristian/how-to-setup-watchman-on-ubuntu-16-04-53196cc0227c))
+```shell
+sudo apt-get install -y libtool autoconf automake build-essential python-dev pkg-config
+```
+
+Then, go back to the Getting Started tutorial mentioned above
+
+You will see something like:
+```shell
+Your build configuration:
+    CC = gcc
+    CPPFLAGS =  -D_REENTRANT -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
+    CFLAGS = -g -O2 -Wall -Wextra -Wdeclaration-after-statement -g -gdwarf-2 -fno-omit-frame-pointer
+    CXX = g++
+    CXXFLAGS = -g -O2 -Wall -Wextra -g -gdwarf-2 -fno-omit-frame-pointer
+    LDFLAGS = 
+    prefix: /usr/local
+    version: 4.9.0
+    state directory: /path/to/watchman
+```
+
+## 2. Troubleshooting:
+
+### - When running npm, you may see an error that says something like "ENOENT". This is a problem with the number of watches your computer can handle.
 You can increase this number by doing this:
 
 ```shell
@@ -11,9 +39,9 @@ You can increase this number by doing this:
     sudo echo 65536 | sudo tee -a /proc/sys/fs/inotify/max_user_watches
 ```
 
-When testing with *Jest*, you may see this error:
+### - When testing with *Jest*, you may see this error:
 ```shell
-Couldn\'t find preset "module:metro-react-native-babel-preset" relative to directory "<path-to-your-project"
+Couldn\'t find preset "module:metro-react-native-babel-preset" relative to directory "<path-to-your-project>"
 ```
 
 Substitute this line on your .babelrc:
@@ -25,17 +53,41 @@ To:
 "presets": ["react-native"]
 ```
 
+### - When running *react-native run-android* you may see this errors:
+```
+> SDK location not found. Define location with sdk.dir in the local.properties file or with an ANDROID_HOME environment variable.
+ ```
+ ```
+> The SDK directory 'some/path' does not exist.
+```
 
+For the above erros, make sure the path to the Android home is set (see the Getting Started instructions)
 
-## Daily command lines
-When using a phone for testing
+You may also see this error:
+```
+> Could not find tools.jar. Please check that /usr/lib/jvm/java-8-openjdk-amd64 contains a valid JDK installation.
+```
+
+Change the version of java (in my case 8 -> 11) on your /etc/enviroment 
+
+Run the new configuration
+
+``` shell
+    source /etc/enviroment
+```
+
+### - Renaming the app
+Follow the instructions @[this tutorial](https://medium.com/the-react-native-log/how-to-rename-a-react-native-app-dafd92161c35). Also, change the "name" attribute on your package.json file
+
+## 3. DAILY COMMANDS
+* When using a phone for testing *
 
 Go to the tools folder
 ```shell
 cd /<path-to-android-sdk-folder>/Android/Sdk/platform-tools
 ```
 
-To check if the phone is connected:
+Check if the phone is connected:
 ```shell
 ./adb devices
 ```
@@ -70,6 +122,11 @@ and do this:
 ./adb -s ABCDEFG12345678 reverse tcp:8081 tcp:8081
 ```
 
+Now you can run the app on your connected device (use this time to get some water for you and your plants)
+```shell
+react-native run-android
+```
+
 To access the "more options", specially for enabling debug:
 ```shell
 ./adb shell input keyevent 82
@@ -85,9 +142,7 @@ To see the phone screen on your computer (has some delay, test it before present
 ./adb shell screenrecord --output-format=h264 - | ffplay -
 ```
 
-If you generated an apk, you also can install it by command line (instead of downloading the apk on the phone)
+If you generated an apk, you also can install it by command line (instead of downloading the apk on the device)
 ```shell
 ./adb install <path-to-apk>
 ```
-
-
