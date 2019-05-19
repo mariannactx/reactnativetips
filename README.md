@@ -80,14 +80,13 @@ Run the new configuration
 Follow the instructions @[this tutorial](https://medium.com/the-react-native-log/how-to-rename-a-react-native-app-dafd92161c35). Also, change the "name" attribute on your package.json file
 
 ## 3. DAILY COMMANDS
-* When using a phone for testing *
 
 Go to the tools folder
 ```shell
 cd /<path-to-android-sdk-folder>/Android/Sdk/platform-tools
 ```
 
-Check if the phone is connected:
+Check if the phone is connected or an emulator is initiated:
 ```shell
 ./adb devices
 ```
@@ -100,6 +99,7 @@ List of devices attached
 ABCDEFG12345678	unauthorized
 ```
 
+### Testing with a phone:
 In case you forgot to give the permissions for accessing the phone (so it says "unauthorized"), you can kill the server...
 ```shell
 ./adb kill-server
@@ -146,3 +146,6 @@ If you generated an apk, you also can install it by command line (instead of dow
 ```shell
 ./adb install <path-to-apk>
 ```
+
+### Bonus: executable files (for Ubuntu)
+See /executables

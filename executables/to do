@@ -1,0 +1,7 @@
+adb-more:           [android-sdk-path]/platform-tools/adb shell input keyevent 82
+adb-refresh:        [android-sdk-path]/platform-tools/adb shell input text "RR"
+adb-devices:        [android-sdk-path]/platform-tools/adb devices
+adb-install:        [android-sdk-path]/platform-tools/adb install android/app/release/app-release.apk
+adb-emulator-list:  [android-sdk-path]/emulator/emulator -list-avds
+adb-emulator-open:  [android-sdk-path]/emulator/emulator -avd $1
+adb-emulator-reset: [android-sdk-path]/emulator/emulator -avd $1 -prop persist.sys.language=en -prop persist.sys.country=GB
